@@ -1,0 +1,68 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Views
+    Name: Views
+Visualization Manager:
+  Class: ''
+  Displays:
+    - Class: rviz_default_plugins/PointCloud2
+      Name: 3D Map
+      Enabled: true
+      Topic:
+        Value: /rtabmap/cloud_map
+        Durability Policy: Transient Local
+        Reliability Policy: Reliable
+        History Policy: Keep Last
+        Depth: 1
+      Color Transformer: RGB8
+      Position Transformer: XYZ
+      Style: Points
+      Size (Pixels): 3
+      Size (m): 0.025
+      Alpha: 1
+      Decay Time: 0
+    - Class: rtabmap_rviz_plugins/MapGraph
+      Name: MapGraph
+      Enabled: true
+      Topic:
+        Value: /rtabmap/mapGraph
+        Durability Policy: Volatile
+        Reliability Policy: Reliable
+        History Policy: Keep Last
+        Depth: 5
+      Alpha: 1
+    - Class: rviz_default_plugins/Image
+      Name: RGB Image
+      Enabled: true
+      Topic:
+        Value: /rgbd_camera/image
+        Durability Policy: Volatile
+        Reliability Policy: Best Effort
+        History Policy: Keep Last
+        Depth: 1
+      Normalize Range: true
+  Global Options:
+    Fixed Frame: map
+    Frame Rate: 30
+    Background Color: 48; 48; 48
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Current View
+      Distance: 12
+      Pitch: 0.65
+      Yaw: 0.8
+      Focal Point:
+        X: 2
+        Y: 0
+        Z: 0.8
+      Target Frame: <Fixed Frame>
+Window Geometry:
+  Width: 1400
+  Height: 900

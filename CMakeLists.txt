@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.20)
+project(turtlebot4_depot)
+find_package(ament_cmake REQUIRED)
+install(DIRECTORY launch config rviz maps worlds DESTINATION share/${PROJECT_NAME})
+ament_package()
