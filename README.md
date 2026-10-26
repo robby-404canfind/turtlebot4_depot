@@ -57,6 +57,22 @@ ros2 launch turtlebot4_depot localization_launch.py
 rviz2 -d ~/ros2_ws/src/turtlebot4_depot/rviz/localization.rviz --ros-args -p use_sim_time:=true
 ```
 
+## Nav2
+
+SLAM Toolbox 또는 별도 AMCL을 종료한 뒤, 시뮬레이터가 실행 중인 상태에서 시작합니다.
+
+```bash
+ros2 launch turtlebot4_depot navigation.launch.py
+```
+
+Depot 지도에서 초기 위치는 (0, 0)입니다. Gazebo 월드 좌표의 초기 위치 (-8, 0)와 구분합니다. 기본 DiffDrive MPPI 설정을 사용합니다. BT 반복 주행 9회 도착 및 이동 중 취소 후 귀환, 실제 움직임과 최종 정지를 확인했습니다.
+
+실행 중인 BT/주행 프로그램을 먼저 종료하고, 시뮬레이터가 켜진 상태에서 아래 명령을 실행합니다. 이후 Nav2, 시뮬레이터 순서로 Ctrl+C로 종료합니다.
+
+```bash
+ros2 run turtlebot4_depot shutdown_navigation
+```
+
 ## RGB-D SLAM
 
 SLAM Toolbox와 AMCL을 종료한 뒤 실행합니다.

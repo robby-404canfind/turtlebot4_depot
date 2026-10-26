@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>turtlebot4_depot</name>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <description>TurtleBot4 in Depot with SLAM Toolbox, AMCL and RGB-D SLAM launch configurations.</description>
   <maintainer email="robby-404canfind@users.noreply.github.com">Robby</maintainer>
   <license>Apache-2.0</license>
@@ -10,10 +10,13 @@
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>nav2_msgs</exec_depend>
   <exec_depend>xacro</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>nav2_minimal_tb4_sim</exec_depend>
   <exec_depend>nav2_common</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
   <exec_depend>nav2_map_server</exec_depend>
   <exec_depend>nav2_amcl</exec_depend>
   <exec_depend>nav2_lifecycle_manager</exec_depend>
