@@ -9,7 +9,7 @@ from nav2_msgs.srv import ManageLifecycleNodes
 rclpy.init()
 node=rclpy.create_node('turtlebot4_shutdown_navigation')
 try:
-    client=node.create_client(ManageLifecycleNodes,'/lifecycle_manager_nav2/manage_nodes')
+    client=node.create_client(ManageLifecycleNodes,'lifecycle_manager_nav2/manage_nodes')
     if not client.wait_for_service(timeout_sec=8.):
         raise RuntimeError('Nav2 lifecycle manager unavailable')
     request=ManageLifecycleNodes.Request();request.command=ManageLifecycleNodes.Request.SHUTDOWN

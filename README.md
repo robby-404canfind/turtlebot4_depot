@@ -73,6 +73,37 @@ Depot 지도에서 초기 위치는 (0, 0)입니다. Gazebo 월드 좌표의 초
 ros2 run turtlebot4_depot shutdown_navigation
 ```
 
+## 멀티 로봇
+
+공유 TF 구성은 로봇별 프레임에 `tb4_i/`를 붙이고, 공통 `/map`, `/tf`, `/tf_static`을 사용합니다. 로봇 수는 2 또는 3입니다. 기존 단일 로봇 시뮬레이터와 localization을 종료한 뒤 각각의 터미널에서 실행합니다.
+
+```bash
+ros2 launch turtlebot4_depot multi_simulation.launch.py robot_count:=3 tf_mode:=shared
+ros2 launch turtlebot4_depot multi_localization.launch.py robot_count:=3
+```
+
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true -p frame_id:=tb4_0/base_link --remap cmd_vel:=/tb4_0/cmd_vel
+```
+
+다른 로봇을 조작하려면 이름을 `tb4_1` 또는 `tb4_2`로 바꿉니다. RViz의 2D Pose Estimate 토픽도 `/tb4_i/initialpose`로 지정합니다.
+
+독립 TF 구성은 공유 구성을 종료한 뒤 실행합니다. 로봇마다 Nav2와 RViz가 실행되며 프레임 이름은 같고 `/tb4_i/tf`, `/tb4_i/tf_static` 토픽을 구분합니다.
+
+```bash
+ros2 launch turtlebot4_depot multi_navigation.launch.py robot_count:=3
+```
+
+이 구성은 시뮬레이터가 켜진 상태에서 각 Nav2를 먼저 종료합니다. 이후 시뮬레이션 터미널에서 Ctrl+C를 누릅니다.
+
+```bash
+for ns in tb4_0 tb4_1 tb4_2; do
+  ros2 run turtlebot4_depot shutdown_navigation --ros-args -r __ns:=/$ns
+done
+```
+
+공유 TF에서 2대·3대의 독립 조작과 초기 위치 입력, 독립 TF에서 세 로봇의 개별 목표 도착·정지를 확인했습니다. 자연스러운 위치 추정 오차는 별도로 보정하지 않았습니다.
+
 ## RGB-D SLAM
 
 SLAM Toolbox와 AMCL을 종료한 뒤 실행합니다.
